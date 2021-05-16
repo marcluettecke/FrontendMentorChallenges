@@ -1,0 +1,209 @@
+// VARIABLES
+$main-background: hsl(233, 47%, 7%);
+$card-background: hsl(244, 38%, 16%);
+$inner-background: hsla(277, 64%, 61%, 0.5);
+
+$main-heading: hsl(0, 0%, 100%);
+$main-paragraph: hsla(0, 0%, 100%, 0.75);
+$stats-heading: hsla(0, 0%, 100%, 0.6);
+
+$header-font-size: 30px;
+$header-font-size-small: 25px;
+$paragraph-font-size: 15px;
+$paragraph-font-size-small: 13px;
+$stats-font-size: 15px;
+$stats-font-size-small: 13px;
+
+$header-font-weight: 700;
+$paragraph-font-weight: 400;
+$stats-font-weight: 400;
+
+$header-font: 'Inter', sans-serif;
+$paragraph-font: 'Lexend Deca', sans-serif;
+
+// MEDIA MIXINS
+@mixin mobile {
+	@media (max-width: 375px) {
+		@content;
+	}
+}
+
+@mixin small-screen {
+	@media (max-width: 1024px) {
+		@content;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	background-color: $main-background;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@include mobile {
+		flex-direction: column;
+	}
+
+	.description {
+		width: 40%;
+		height: 60%;
+		background-color: $card-background;
+		border-radius: 2% 0 0 2%;
+		display: flex;
+		justify-content: center;
+
+		@include mobile {
+			width: 90%;
+			height: 60%;
+			order: 2;
+			text-align: center;
+			border-radius: 0 0 2% 2%;
+		}
+
+		&__items {
+			width: 60%;
+			display: flex;
+			flex-direction: column;
+			margin: 4rem 0;
+			justify-content: space-evenly;
+
+			@include small-screen {
+				width: 75%;
+				margin: 3rem 0;
+			}
+
+			@include mobile {
+				width: 90%;
+				margin: 2rem 0;
+			}
+		}
+
+		&__header {
+			font-family: $header-font;
+			font-size: $header-font-size;
+			font-weight: $header-font-weight;
+			color: $main-heading;
+			margin-bottom: 2rem;
+
+			@include small-screen {
+				font-size: $header-font-size-small;
+			}
+
+			@include mobile {
+				font-size: $header-font-size;
+			}
+
+			&__focus {
+				color: lighten($inner-background, 15%);
+			}
+		}
+
+		&__text {
+			font-family: $paragraph-font;
+			font-size: $paragraph-font-size;
+			font-weight: $paragraph-font-weight;
+			color: $main-paragraph;
+			margin-bottom: 3rem;
+
+			@include small-screen {
+				font-size: $paragraph-font-size-small;
+			}
+			@include mobile {
+				font-size: $paragraph-font-size;
+			}
+		}
+
+		&__stats {
+			list-style: none;
+			display: flex;
+			justify-content: flex-start;
+
+			@include small-screen {
+				flex-wrap: wrap;
+			}
+
+			@include mobile {
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: center;
+			}
+
+			&__item {
+				display: flex;
+				flex-direction: column;
+				// margin-right: calc(100vw * 0.03);
+				margin-right: 4vw;
+
+				@include small-screen {
+					margin: 1rem 2vw 0 0;
+				}
+
+				@include mobile {
+					margin-right: 0;
+				}
+
+				&__number {
+					color: $main-heading;
+					font-family: $header-font;
+					font-size: 20px;
+					font-weight: 700;
+
+					@include small-screen {
+						font-size: 15px;
+					}
+				}
+				&__tag {
+					font-family: $paragraph-font;
+					font-size: $paragraph-font-size;
+					font-weight: $paragraph-font-weight;
+					color: $main-paragraph;
+
+					@include small-screen {
+						font-size: $paragraph-font-size-small;
+					}
+
+					@include mobile {
+						font-size: $paragraph-font-size;
+					}
+				}
+			}
+		}
+	}
+
+	.image {
+		width: 40%;
+		height: 60%;
+		border-radius: 0 2% 2% 0;
+		background-image: url('./images/image-header-desktop.jpg');
+		background-size: 100%;
+		background-size: cover;
+		position: relative;
+
+		@include small-screen {
+			width: 25%;
+		}
+
+		@include mobile {
+			width: 90%;
+			height: 30%;
+			border-radius: 2% 2% 0 0;
+		}
+
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background: $inner-background;
+		}
+	}
+}
