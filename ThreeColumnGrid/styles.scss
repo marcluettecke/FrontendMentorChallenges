@@ -1,0 +1,128 @@
+// VARIABLES
+$sedan-color: hsl(31, 77%, 52%);
+$suv-color: hsl(184, 100%, 22%);
+$luxury-color: hsl(179, 100%, 13%);
+$paragraphs-color: hsla(0, 0%, 100%, 0.75);
+
+$background-primary: hsl(0, 0%, 95%);
+
+$font-size-body: 15px;
+$font-size-heading: 40px;
+$font-family-body: 'Lexend Deca';
+$font-family-heading: 'Big Shoulders Display';
+$font-weight-body: 400;
+$font-weight-heading: 700;
+
+$margin-small: 2rem;
+$margin-large: 3.5rem;
+
+// MEDIA MIXINS
+@mixin mobile {
+	@media (max-width: 375px) {
+		@content;
+	}
+}
+
+@mixin small-screen {
+	@media (max-width: 1024px) {
+		@content;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.outer-container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.inner-container {
+		width: 70vw;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		// flex-wrap: wrap;
+
+		@include small-screen {
+			flex-direction: column;
+		}
+
+		.cart {
+			&__container {
+				width: 400px;
+				min-width: 300px;
+				height: 32rem;
+				display: flex;
+				justify-content: center;
+
+				@include small-screen {
+					width: 500px;
+				}
+			}
+			&__items {
+				min-width: 100px;
+				width: 90%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				margin: 0 3rem;
+
+				&__icon {
+					margin-top: $margin-small;
+				}
+
+				&__header {
+					font-family: $font-family-heading;
+					font-size: $font-size-heading;
+					font-weight: $font-weight-heading;
+					color: $paragraphs-color;
+					text-transform: uppercase;
+					// margin-top: $margin-small;
+				}
+
+				&__description {
+					font-family: $font-family-body;
+					font-size: $font-size-body;
+					font-weight: $font-weight-body;
+					color: $paragraphs-color;
+					line-height: 30px;
+					// margin-top: $margin-small;
+				}
+
+				&__button {
+					padding: 1rem;
+					border-radius: 30px;
+					background-color: $paragraphs-color;
+					border: none;
+					margin: $margin-small 0 $margin-small 0;
+				}
+				.button__sedan {
+					color: $sedan-color;
+				}
+				.button__suv {
+					color: $suv-color;
+				}
+				.button__luxury {
+					color: $luxury-color;
+				}
+			}
+		}
+		.sedan {
+			border-radius: 10px 0 0 10px;
+			background-color: $sedan-color;
+		}
+		.suv {
+			background-color: $suv-color;
+		}
+
+		.luxury {
+			border-radius: 0 10px 10px 0;
+			background-color: $luxury-color;
+		}
+	}
+}
